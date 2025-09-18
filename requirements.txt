@@ -1,0 +1,8 @@
+python-dotenv
+langchain-community>=0.0.0
+openai
+langchain-openai
+qdrant-client
+langchain-qdrant
+lancedb
+termcolor

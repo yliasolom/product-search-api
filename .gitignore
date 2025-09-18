@@ -1,0 +1,10 @@
+# Игнорировать все файлы в папке src/data
+src/data/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+
