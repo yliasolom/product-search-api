@@ -8,3 +8,11 @@ __pycache__/
 .env
 .venv/
 
+# macOS
+.DS_Store
+
+# PyCharm / IntelliJ IDEA
+.idea/
+*.iml
+
+
