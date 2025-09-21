@@ -43,5 +43,3 @@ def test_llm_metrics(example):
         print(f"Пример: {example['user_input']}")
         print(f"Метрика {metric}: {score}")
         assert score >= THRESHOLD, f"Метрика {metric} слишком низкая: {score}"
-
-

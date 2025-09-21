@@ -12,6 +12,7 @@ from src.llm import OllamaLLM
 from src.utils import char_ngrams
 
 from dotenv import load_dotenv
+
 load_dotenv()
 
 dense_model = SentenceTransformer("cointegrated/rubert-tiny2")
