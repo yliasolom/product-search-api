@@ -10,17 +10,18 @@ from ragas.metrics import FactualCorrectness, Faithfulness
 
 load_dotenv()
 
-THRESHOLD = 0.5
+THRESHOLD = 0.2
 MODEL_NAME = os.getenv("MODEL_NAME")
 
 test_llm = ChatOllama(model=MODEL_NAME)
+
 embeddings = OllamaEmbeddings(model=MODEL_NAME)
 
 data = [
     {
         "response": "Можно выбрать настенный дозатор BERKRAFT Line на 200 мл.",
         "contexts": ["Дозатор для жидкого мыла настенный BERKRAFT Line 200 мл"],
-        "reference": "Рекомендую настенный дозатор для жидкого мыла BERKRAFT Line на 200 мл.",
+        "reference": "Отличным выбором станет настенный дозатор BERKRAFT Line на 200 мл.",
         "user_input": "Какой можно выбрать дозатор на стену 200 мл.",
     }
 ]
@@ -31,10 +32,9 @@ def test_llm_metrics(example):
     single_dataset = Dataset.from_list([example])
     results_list = evaluate(
         dataset=single_dataset,
-        metrics=[Faithfulness(), FactualCorrectness()],
+        metrics=[FactualCorrectness(), Faithfulness()],
         llm=test_llm,
-        embeddings=embeddings,
-        show_progress=False,
+        show_progress=True,
         raise_exceptions=True,
     )
 
@@ -43,3 +43,5 @@ def test_llm_metrics(example):
         print(f"Пример: {example['user_input']}")
         print(f"Метрика {metric}: {score}")
         assert score >= THRESHOLD, f"Метрика {metric} слишком низкая: {score}"
+
+

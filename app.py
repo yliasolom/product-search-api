@@ -11,6 +11,9 @@ from sentence_transformers import SentenceTransformer
 from src.llm import OllamaLLM
 from src.utils import char_ngrams
 
+from dotenv import load_dotenv
+load_dotenv()
+
 dense_model = SentenceTransformer("cointegrated/rubert-tiny2")
 sparse_model = SparseTextEmbedding(model_name="Qdrant/bm25")
 
@@ -19,7 +22,7 @@ qdrant = QdrantClient(qdrant_address)
 collection_name = os.getenv("COLLECTION")
 
 llm = OllamaLLM(model_name=os.getenv("MODEL_NAME"))
-
+print(llm)
 app = FastAPI(title="Product Search API")
 
 
